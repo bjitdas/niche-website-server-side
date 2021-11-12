@@ -27,30 +27,12 @@ async function run() {
     const reviewCollection = database.collection('reviews');
 
 
-    // GET ORDER BY EMAIL
-    app.get('/orders', async (req, res) => {
-      const email = req.query.email;
-      const query = { email: email }
-      const cursor = ordersCollection.find(query);
-      const orders = await cursor.toArray();
-      res.json(orders)
-    })
-
-
     // GET PRODUCT API
     app.get('/products', async (req, res) => {
       const cursor = productsCollection.find({});
       const products = await cursor.toArray();
       res.send(products)
     })
-
-    //GET ORDER
-    app.get('/orders', async (req, res) => {
-      const cursor = ordersCollection.find({})
-      const orders = await cursor.toArray();
-      res.json(orders)
-    });
-
 
 
     //GET SINGLE PRODUCT 
@@ -69,8 +51,22 @@ async function run() {
     });
 
 
+    //GET ORDER
+    app.get('/orders', async (req, res) => {
+      const cursor = ordersCollection.find({})
+      const orders = await cursor.toArray();
+      res.json(orders)
+    });
 
 
+    // GET ORDER BY EMAIL
+    app.get('/orders', async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email }
+      const cursor = ordersCollection.find(query);
+      const orders = await cursor.toArray();
+      res.json(orders)
+    })
 
 
 
