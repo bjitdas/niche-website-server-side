@@ -50,15 +50,6 @@ async function run() {
       res.json(reviews);
     });
 
-    // GET ORDER BY EMAIL
-    app.get('/orders', async (req, res) => {
-      const email = req.query.email;
-      const query = { email: email }
-      const cursor = ordersCollection.find(query);
-      const orders = await cursor.toArray();
-      res.json(orders)
-    })
-
 
     //GET ORDER
     app.get('/orders', async (req, res) => {
@@ -66,6 +57,15 @@ async function run() {
       const orders = await cursor.toArray();
       res.json(orders)
     });
+
+    // GET ORDER BY EMAIL
+    app.get('/orders', async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email }
+      const cursor = ordersCollection.find(query);
+      const myOrders = await cursor.toArray();
+      res.json(myOrders)
+    })
 
 
 
